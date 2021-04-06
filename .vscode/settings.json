@@ -1,0 +1,11 @@
+{
+    "svg.preview.background": "transparent",
+    "scss.validate": false,
+    "stylelint.enable": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg/store/**": true
+    },
+    "vsicons.presets.angular": true, // Enable sytlelint
+}

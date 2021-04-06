@@ -1,32 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from "@angular/core";
+import { CookieConsentService } from "lib";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   template: `
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div style="text-align:center" class="content">
-      <h1>
-        Welcome to {{title}}!
-      </h1>
-      <span style="display: block">{{ title }} app is running!</span>
-      <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-    </div>
-    <h2>Here are some links to help you start: </h2>
-    <ul>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-      </li>
-      <li>
-        <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-      </li>
-    </ul>
+    <button
+      type="button"
+      class="inline-flex capitalize items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      (click)="cookies.showConsent()"
+    >
+      reopen cookie consent
+    </button>
+
+    <button
+      type="button"
+      class="ml-4 inline-flex capitalize items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      (click)="updateOptions()"
+    >
+      update options
+    </button>
+
+    <button
+      type="button"
+      class="ml-4 inline-flex capitalize items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      (click)="cookies.deleteConsent()"
+    >
+      delete consent
+    </button>
     
-  `,
-  styles: []
+    <button
+      type="button"
+      class="ml-4 inline-flex capitalize items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      (click)="toggleTheme()"
+    >
+      toggle theme
+    </button>
+    <ul>
+      <li>Functional: {{ cookies.accepted$("functional") | async }}</li>
+      <li>Statistics: {{ cookies.accepted$("statistics") | async }}</li>
+    </ul>
+
+    <pre>
+
+    {{ (cookies.selection$ | async) || "no consent yet" | json }}
+
+    </pre
+    >
+  `
 })
 export class AppComponent {
-  title = 'cookie-consent';
+  @HostBinding("class") class = "block p-8 space-y-6";
+  constructor(public cookies: CookieConsentService) {}
+
+  updateOptions() {
+    this.cookies.updateOptions({
+      title: "Gimme Cookies...",
+      cookies: {
+        necessary: {
+          title: "Wow",
+          label: "We need this",
+          disabled: true,
+          value: true,
+        },
+      },
+    });
+  }
+
+  toggleTheme(){
+    document.body.classList.toggle('custom-theme')
+  }
 }

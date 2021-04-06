@@ -1,1 +1,63 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
 /* You can add global styles to this file, and also import other style files */
+
+.custom-theme {
+  .cc-banner {
+    @apply bg-gray-800;
+
+    .cc-title {
+      @apply text-gray-50;
+    }
+
+    .cc-message {
+      @apply text-gray-200;
+    }
+
+    .cc-link {
+      @apply text-gray-300;
+    }
+
+    .cc-link:hover {
+      @apply text-green-500;
+    }
+
+    .cc-toggle-background-true {
+      @apply bg-green-500;
+    }
+    .cc-toggle-background-false {
+      @apply bg-gray-500;
+    }
+
+    .cc-cookie-item:hover {
+      @apply bg-gray-600;
+    }
+
+    .cc-cookie-item-title {
+      @apply text-gray-50;
+    }
+
+    .cc-cookie-item-label {
+      @apply text-gray-200;
+    }
+
+    .cc-show-less {
+      @apply text-gray-300;
+    }
+
+    .cc-button-container {
+      @apply bg-gray-800 border-gray-600;
+    }
+
+    .cc-button-primary {
+      @apply bg-green-500;
+    }
+
+    .cc-button-secondary {
+      @apply bg-gray-600 text-gray-100 border-gray-600;
+    }
+  }
+}
