@@ -9,7 +9,7 @@ export interface CookieConsentOptions {
   showLessLabel: string;
   links: Link[];
   cookies: {
-    necessary: Cookie;
+    necessary?: Cookie;
     functional?: Cookie;
     statistics?: Cookie;
     marketing?: Cookie;

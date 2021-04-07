@@ -5,59 +5,50 @@
 @import "tailwindcss/utilities";
 /* You can add global styles to this file, and also import other style files */
 
-.custom-theme {
-  .cc-banner {
-    @apply bg-gray-800;
+.indigo-light {
+  cc-banner {
+    --cc-background: theme(colors.gray.100);
+    --cc-background-shade: theme(colors.gray.300);
+    --cc-title-color: theme(colors.gray.900);
+    --cc-color: theme(colors.gray.700);
+    --cc-link-color: theme(colors.gray.600);
+    --cc-primary: theme(colors.indigo.500);
+    --cc-primary-hover: theme(colors.indigo.600);
+    --cc-primary-color: theme(colors.gray.50);
+    --cc-secondary: var(--colors.gray.300);
+    --cc-secondary-hover: theme(colors.gray.200);
+    --cc-secondary-color: theme(colors.gray.800);
+  }
+}
 
-    .cc-title {
-      @apply text-gray-50;
-    }
+.orange-dark {
+  cc-banner {
+    --cc-background: theme(colors.gray.800);
+    --cc-background-shade: theme(colors.gray.600);
+    --cc-title-color: theme(colors.gray.50);
+    --cc-color: theme(colors.gray.200);
+    --cc-link-color: theme(colors.gray.300);
+    --cc-primary: theme(colors.yellow.600);
+    --cc-primary-hover: theme(colors.yellow.700);
+    --cc-primary-color: theme(colors.gray.50);
+    --cc-secondary: var(--colors.gray.500);
+    --cc-secondary-hover: theme(colors.gray.600);
+    --cc-secondary-color: theme(colors.gray.50);
+  }
+}
 
-    .cc-message {
-      @apply text-gray-200;
-    }
-
-    .cc-link {
-      @apply text-gray-300;
-    }
-
-    .cc-link:hover {
-      @apply text-green-500;
-    }
-
-    .cc-toggle-background-true {
-      @apply bg-green-500;
-    }
-    .cc-toggle-background-false {
-      @apply bg-gray-500;
-    }
-
-    .cc-cookie-item:hover {
-      @apply bg-gray-600;
-    }
-
-    .cc-cookie-item-title {
-      @apply text-gray-50;
-    }
-
-    .cc-cookie-item-label {
-      @apply text-gray-200;
-    }
-
-    .cc-show-less {
-      @apply text-gray-300;
-    }
-
-    .cc-button-container {
-      @apply bg-gray-800 border-gray-600;
-    }
-
-    .cc-button-primary {
-      @apply bg-green-500;
-    }
-
-    .cc-button-secondary {
-      @apply bg-gray-600 text-gray-100 border-gray-600;
-    }
+.blue {
+  cc-banner {
+    --cc-background: theme(colors.blue.50);
+    --cc-background-shade: theme(colors.blue.200);
+    --cc-title-color: theme(colors.blue.800);
+    --cc-color: theme(colors.blue.700);
+    --cc-link-color: theme(colors.blue.600);
+    --cc-primary: theme(colors.blue.800);
+    --cc-primary-hover: theme(colors.blue.800);
+    --cc-primary-color: theme(colors.blue.50);
+    --cc-secondary: var(--colors.blue.50);
+    --cc-secondary-hover: theme(colors.blue.100);
+    --cc-secondary-color: theme(colors.blue.700);
   }
 }

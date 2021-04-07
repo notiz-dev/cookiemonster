@@ -1,4 +1,4 @@
-import { Component, HostBinding, Inject, OnInit } from "@angular/core";
+import { Component, HostBinding, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Subject } from "rxjs";
 import {
@@ -11,7 +11,7 @@ import {
 @Component({
   selector: "cc-banner",
   template: ` <div
-    class="rounded-md w-full max-w-5xl shadow-lg space-y-3 bg-gray-100 p-4 cc-banner"
+    class="rounded-md w-full max-w-5xl shadow-lg space-y-3 p-4 cc-banner"
   >
     <div class="flex justify-between items-center">
       <h3 class="text-lg font-semibold cc-title">{{ options.title }}</h3>
@@ -21,7 +21,7 @@ import {
         [disabled]="!expanded"
         [ngClass]="{ 'opacity-0': !expanded }"
         type="button"
-        class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cc-button cc-button-primary"
+        class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none cc-button cc-button-primary"
       >
         {{ options.acceptAllLabel }}
       </button>
@@ -30,7 +30,7 @@ import {
     <div class="flex flex-wrap sm: space-x-2">
       <a
         *ngFor="let link of options.links"
-        class="inline-flex items-center space-x-1 hover:text-blue-500 cc-link"
+        class="inline-flex items-center space-x-1 cc-link"
         [href]="link.url"
         target="_blank"
         rel="noopener"
@@ -65,32 +65,35 @@ import {
       <div
         class="space-y-4 lg:space-y-0 py-4 lg:grid lg:grid-cols-2 cc-cookie-list"
       >
-        <div
-          [ngClass]="{ 'hover:bg-gray-200': !cookie.disabled }"
+        <button
+          type="button"
+          [disabled]="cookie.disabled"
+          (click)="toggle.writeValue(!toggle.value)"
+          [ngClass]="{
+            'hover:bg-gray-200': !cookie.disabled,
+            'cursor-not-allowed': cookie.disabled
+          }"
           *ngFor="let cookie of cookies"
-          class="flex items-start space-x-4 max-w-2xl cursor-pointer px-2 py-1 rounded-md cc-cookie-item"
+          class="flex items-start space-x-4 max-w-2xl cursor-pointer px-2 py-1 rounded-md cc-cookie-item focus:outline-none"
         >
           <cc-toggle
             #toggle
             class="mt-2"
             [formControlName]="cookie.name"
           ></cc-toggle>
-          <button
-            type="button"
-            [disabled]="cookie.disabled"
-            (click)="toggle.writeValue(!toggle.value)"
-            class="flex-grow flex flex-col text-left focus:outline-none"
+          <div
+            class="flex-grow flex flex-col text-left "
             id="availability-label"
           >
             <span
-              class="text-sm font-medium text-gray-900 cc-cookie-item-title"
+              class="text-sm font-medium cc-cookie-item-title"
               >{{ cookie.title }}</span
             >
-            <span class="text-sm text-gray-500 cc-cookie-item-label">{{
+            <span class="text-sm cc-cookie-item-label">{{
               cookie.label
             }}</span>
-          </button>
-        </div>
+          </div>
+        </button>
       </div>
       <button
         type="button"
@@ -114,25 +117,25 @@ import {
       </button>
     </form>
     <div
-      class="sticky bottom-0 bg-gray-100 border-t py-2 border-gray-200 flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-3 cc-button-container"
+      class="sticky bottom-0 border-t py-2 flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-3 cc-button-container"
     >
       <button
         (click)="acceptAll()"
         type="button"
-        class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cc-button cc-button-primary"
+        class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none cc-button cc-button-primary"
       >
         {{ options.acceptAllLabel }}
       </button>
       <button
         (click)="secondaryAction()"
         type="button"
-        class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border text-sm font-medium rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cc-button cc-button-secondary"
+        class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border text-sm font-medium rounded-md focus:outline-none cc-button cc-button-secondary"
       >
         {{ expanded ? options.acceptSelectionLabel : options.showMoreLabel }}
       </button>
     </div>
   </div>`,
-  styles: [],
+  styleUrls: ['./banner.component.scss'],
 })
 export class BannerComponent implements OnInit {
   @HostBinding("class") class =

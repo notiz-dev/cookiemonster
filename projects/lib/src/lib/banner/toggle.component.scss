@@ -1,0 +1,25 @@
+:host {
+  --cc-toggle-true: var(--cc-primary);
+  --cc-toggle-false: var(--cc-background-shade);
+  --cc-toggle-nipple: var(--cc-background);
+  --cc-toggle-icon: var(--cc-link-color);
+}
+
+.cc-toggle-background-true {
+  background-color: var(--cc-toggle-true);
+}
+
+.cc-toggle-background-false {
+  background-color: var(--cc-toggle-false);
+}
+
+.cc-toggle-nipple {
+  background-color: var(--cc-toggle-nipple);
+}
+
+.cc-nipple-icon-false,
+.cc-nipple-icon-true {
+  background-color: var(--cc-toggle-nipple);
+  color: var(--cc-toggle-icon);
+}
+

@@ -1,0 +1,78 @@
+:host {
+  --cc-background: theme(colors.gray.800);
+  --cc-background-shade: theme(colors.gray.600);
+  --cc-title-color: theme(colors.gray.50);
+  --cc-color: theme(colors.gray.200);
+  --cc-link-color: theme(colors.gray.300);
+  --cc-primary: theme(colors.green.500);
+  --cc-primary-hover: theme(colors.green.600);
+  --cc-primary-color: theme(colors.gray.50);
+  --cc-secondary: var(--colors.gray.500);
+  --cc-secondary-hover: theme(colors.gray.600);
+  --cc-secondary-color: theme(colors.gray.50);
+}
+.cc-banner {
+  background-color: var(--cc-background);
+}
+
+.cc-title {
+  color: var(--cc-title-color);
+}
+
+.cc-message {
+  color: var(--cc-color);
+}
+
+.cc-link {
+  color: var(--cc-link-color);
+}
+
+.cc-link:hover {
+  color: var(--cc-primary);
+}
+
+cc-toggle {
+  --cc-toggle-true: var(--cc-primary);
+  --cc-toggle-false: var(--cc-background-shade);
+  --cc-toggle-nipple: var(--cc-background);
+}
+
+.cc-cookie-item:hover {
+  background-color: var(--cc-background-shade);
+}
+
+.cc-cookie-item-title {
+  color: var(--cc-title-color);
+}
+
+.cc-cookie-item-label {
+  color: var(--cc-color);
+}
+
+.cc-show-less {
+  color: var(--cc-link-color);
+}
+
+.cc-button-container {
+  background-color: var(--cc-background);
+  border-color: var(--cc-background-shade);
+}
+
+.cc-button-primary {
+  background-color: var(--cc-primary);
+  color: var(--cc-primary-color);
+}
+
+.cc-button-primary:hover {
+  background-color: var(--cc-primary-hover);
+}
+
+.cc-button-secondary {
+  border-color: var(--cc-secondary);
+  background-color: var(--cc-secondary);
+  color: var(--cc-secondary-color);
+}
+
+.cc-button-secondary:hover {
+  background-color: var(--cc-secondary-hover);
+}

@@ -7,21 +7,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
     <button
       [disabled]="disabled"
       [ngClass]="{
-        'bg-gray-200': !value,
-        'bg-indigo-500': value,
         'cc-toggle-background-false': !value,
         'cc-toggle-background-true': value,
         'opacity-50': disabled,
         'cursor-not-allowed': disabled
       }"
-      (click)="value = !value"
+      (click)="value = !value; $event.stopPropagation()"
       type="button"
-      class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-gray-50 rounded-full cursor-pointer transition-colors ease-in-out duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cc-cookie-item-toggle"
+      class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 rounded-full cursor-pointer transition-colors ease-in-out duration-100 focus:outline-none cc-cookie-item-toggle"
       aria-pressed="false"
     >
       <span
         [ngClass]="{ 'translate-x-5': value, 'translate-x-0': !value }"
-        class="pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+        class="pointer-events-none relative inline-block h-5 w-5 rounded-full shadow transform ring-0 transition ease-in-out duration-200 cc-toggle-nipple"
       >
         <span
           [ngClass]="{
@@ -36,7 +34,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
           aria-hidden="true"
         >
           <svg
-            class="bg-white h-3 w-3 text-gray-400"
+            class="h-3 w-3 cc-nipple-icon-false"
             fill="none"
             viewBox="0 0 12 12"
           >
@@ -62,7 +60,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
           aria-hidden="true"
         >
           <svg
-            class="bg-white h-3 w-3 text-indigo-600"
+            class="h-3 w-3 cc-nipple-icon-true"
             fill="currentColor"
             viewBox="0 0 12 12"
           >
@@ -74,7 +72,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
       </span>
     </button>
   `,
-  styles: [],
+  styleUrls: ['./toggle.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
