@@ -102,6 +102,10 @@
           "options": {
             "browserTarget": "cookie-consent:build"
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     },

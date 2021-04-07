@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "cross-env NODE_ENV=production ng build --prod"
+    "build:prod": "cross-env NODE_ENV=production ng build --prod",
+    "deploy": "cross-env NODE_ENV=production ng deploy --base-href=/cookiemonster/"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,7 @@
     "@angular/compiler-cli": "~11.2.3",
     "@tailwindcss/forms": "latest",
     "@types/node": "^12.11.1",
+    "angular-cli-ghpages": "^1.0.0-rc.1",
     "cross-env": "^7.0.3",
     "ng-packagr": "^11.0.0",
     "ngx-tailwind": "^2.1.0",
