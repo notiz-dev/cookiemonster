@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "cross-env NODE_ENV=production ng build --prod",
-    "deploy": "cross-env NODE_ENV=production ng deploy --base-href=/cookiemonster/"
+    "build:lib": "ng build lib --prod && cp tailwind.config.js dist/lib",
+    "publish:lib": "npm publish dist/lib",
+    "deploy": "cross-env NODE_ENV=production ng deploy demo --base-href=/cookiemonster/"
   },
   "private": true,
   "dependencies": {

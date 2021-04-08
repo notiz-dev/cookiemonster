@@ -1,6 +1,5 @@
 module.exports = {
   purge: ['./src/**/*.{html,ts}','./projects/lib/src/**/*.{html,ts}'],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       maxHeight:{
@@ -8,9 +7,4 @@ module.exports = {
       }
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [require('@tailwindcss/forms')
-],
 };

@@ -1,4 +1,10 @@
-import { ComponentRef, EmbeddedViewRef, OnDestroy } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import {
+  ComponentRef,
+  EmbeddedViewRef,
+  OnDestroy,
+  PLATFORM_ID,
+} from "@angular/core";
 import {
   ApplicationRef,
   ComponentFactoryResolver,
@@ -26,8 +32,12 @@ export class CookieConsentService implements OnDestroy {
     @Inject(COOKIECONSENT) private options: CookieConsentOptions,
     private componentFactoryResolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
-    private injector: Injector
+    private injector: Injector,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     const state = JSON.parse(localStorage.getItem(COOKIECONSENT.toString()));
     this.selection$.next(state);
     if (!state) {
@@ -44,6 +54,7 @@ export class CookieConsentService implements OnDestroy {
   }
 
   showConsent() {
+
     if (this.ref) {
       this.ref.destroy();
     }
