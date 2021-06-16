@@ -81,7 +81,7 @@ export class CookieConsentService implements OnDestroy {
       .subscribe();
   }
 
-  private saveSelection(selection: CookieSelection) {
+  private saveSelection(selection: CookieSelection | null) {
     localStorage.setItem(COOKIECONSENT.toString(), JSON.stringify(selection));
     this.selection$.next(selection);
   }
