@@ -168,13 +168,14 @@ export class BannerComponent implements OnInit {
   }
 
   secondaryAction() {
-    if (!this.expanded) {
-      return (this.expanded = true);
+    if (this.expanded) {
+      const result: CookieSelection = {};
+      Object.keys(this.formGroup.controls).forEach(
+        (c) => (result[c] = this.formGroup.get(c).value)
+      );
+      this.select$.next(result);
+    } else {
+      this.expanded = true;
     }
-    const result: CookieSelection = {};
-    Object.keys(this.formGroup.controls).forEach(
-      (c) => (result[c] = this.formGroup.get(c).value)
-    );
-    this.select$.next(result);
   }
 }
