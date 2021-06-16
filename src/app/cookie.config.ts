@@ -1,4 +1,4 @@
-import { CookieConsentOptions } from "projects/lib/src/lib/cookie-consent.types";
+import { CookieConsentOptions } from "@garygrossgarten/cookie-monster";
 
 export const cookieConfig: CookieConsentOptions = {
   title: "Wir verwenden Cookies 🍪",

@@ -1,9 +1,8 @@
-import { CookieConsentOptions } from "projects/lib/src/lib/cookie-consent.types";
+import { CookieConsentOptions } from "@garygrossgarten/cookie-monster";
 
 export const cookieConfig: CookieConsentOptions = {
   title: "Wir verwenden Cookies 🍪",
-  message:
-    `Wir verwenden Cookies, um Inhalte zu personalisieren und die Zugriffe auf unsere Website zu analysieren. Mehr Informationen zu den verwendeten Cookies erhalten Sie in unserer Datenschutzerklärung.`,
+  message: `Wir verwenden Cookies, um Inhalte zu personalisieren und die Zugriffe auf unsere Website zu analysieren. Mehr Informationen zu den verwendeten Cookies erhalten Sie in unserer Datenschutzerklärung.`,
   links: [
     { label: "Datenschutzerklärung", url: "http://localhost.4200/privacy" },
     { label: "Impressum", url: "http://localhost.4200/imprint" },

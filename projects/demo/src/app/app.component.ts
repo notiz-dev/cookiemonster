@@ -1,5 +1,5 @@
 import { Component, HostBinding } from "@angular/core";
-import { CookieConsentService } from "lib";
+import { CookieConsentService } from "@garygrossgarten/cookie-monster";
 
 @Component({
   selector: "app-root",
@@ -58,8 +58,7 @@ import { CookieConsentService } from "lib";
 
     {{ (cookies.selection$ | async) || "no consent yet" | json }}
 
-    </pre
-    >
+    </pre>
   `,
 })
 export class AppComponent {
