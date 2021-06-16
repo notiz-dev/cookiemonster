@@ -13,7 +13,7 @@ export interface CookieConsentOptions {
     functional?: Cookie;
     statistics?: Cookie;
     marketing?: Cookie;
-    [key: string]: Cookie;
+    [key: string]: Cookie | undefined;
   };
 }
 
@@ -38,5 +38,5 @@ export interface CookieSelection {
   functional?: boolean;
   statistics?: boolean;
   marketing?: boolean;
-  [key: string]: boolean;
+  [key: string]: boolean | undefined;
 }
