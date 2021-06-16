@@ -1,28 +1,28 @@
-import { isPlatformBrowser } from "@angular/common";
+import { isPlatformBrowser } from '@angular/common';
 import {
   ComponentRef,
   EmbeddedViewRef,
   OnDestroy,
   PLATFORM_ID,
-} from "@angular/core";
+} from '@angular/core';
 import {
   ApplicationRef,
   ComponentFactoryResolver,
   Inject,
   Injectable,
   Injector,
-} from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
-import { map, takeUntil, tap } from "rxjs/operators";
-import { BannerComponent } from "./banner/banner.component";
+} from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { map, takeUntil, tap } from 'rxjs/operators';
+import { BannerComponent } from './banner/banner.component';
 import {
   COOKIECONSENT,
   CookieConsentOptions,
   CookieSelection,
-} from "./cookie-consent.types";
+} from './cookie-consent.types';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CookieConsentService implements OnDestroy {
   private destroy$ = new Subject();
@@ -54,7 +54,6 @@ export class CookieConsentService implements OnDestroy {
   }
 
   showConsent() {
-
     if (this.ref) {
       this.ref.destroy();
     }

@@ -1,8 +1,8 @@
-import { Component, forwardRef, Input, OnInit } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: "cc-toggle",
+  selector: 'cc-toggle',
   template: `
     <button
       [disabled]="disabled"

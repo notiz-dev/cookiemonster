@@ -1,4 +1,4 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
 export interface CookieConsentOptions {
   title: string;
@@ -30,7 +30,7 @@ export interface Link {
 }
 
 export const COOKIECONSENT = new InjectionToken<CookieConsentOptions>(
-  "COOKIECONSENT"
+  'COOKIECONSENT'
 );
 
 export interface CookieSelection {

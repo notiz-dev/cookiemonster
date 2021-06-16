@@ -1,15 +1,15 @@
-import { Component, HostBinding, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { Subject } from "rxjs";
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
 import {
   Cookie,
   COOKIECONSENT,
   CookieConsentOptions,
   CookieSelection,
-} from "../cookie-consent.types";
+} from '../cookie-consent.types';
 
 @Component({
-  selector: "cc-banner",
+  selector: 'cc-banner',
   template: ` <div
     class="rounded-md w-full max-w-5xl shadow-lg space-y-3 p-4 cc-banner"
   >
@@ -85,13 +85,10 @@ import {
             class="flex-grow flex flex-col text-left "
             id="availability-label"
           >
-            <span
-              class="text-sm font-medium cc-cookie-item-title"
-              >{{ cookie.title }}</span
-            >
-            <span class="text-sm cc-cookie-item-label">{{
-              cookie.label
+            <span class="text-sm font-medium cc-cookie-item-title">{{
+              cookie.title
             }}</span>
+            <span class="text-sm cc-cookie-item-label">{{ cookie.label }}</span>
           </div>
         </button>
       </div>
@@ -138,8 +135,8 @@ import {
   styleUrls: ['./banner.component.scss'],
 })
 export class BannerComponent implements OnInit {
-  @HostBinding("class") class =
-    "fixed max-h-screen overflow-y-auto bottom-0 left-0 right-0 p-1 md:p-4 cc-banner-container";
+  @HostBinding('class') class =
+    'fixed max-h-screen overflow-y-auto bottom-0 left-0 right-0 p-1 md:p-4 cc-banner-container';
   select$ = new Subject<CookieSelection>();
   formGroup: FormGroup;
   expanded = false;

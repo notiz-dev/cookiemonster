@@ -1,8 +1,8 @@
-import { Component, HostBinding } from "@angular/core";
-import { CookieConsentService } from "@garygrossgarten/cookie-monster";
+import { Component, HostBinding } from '@angular/core';
+import { CookieConsentService } from '@garygrossgarten/cookie-monster';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   template: `
     <button
       type="button"
@@ -50,28 +50,29 @@ import { CookieConsentService } from "@garygrossgarten/cookie-monster";
       </button>
     </div>
     <ul>
-      <li>Functional: {{ cookies.accepted$("functional") | async }}</li>
-      <li>Statistics: {{ cookies.accepted$("statistics") | async }}</li>
+      <li>Functional: {{ cookies.accepted$('functional') | async }}</li>
+      <li>Statistics: {{ cookies.accepted$('statistics') | async }}</li>
     </ul>
 
     <pre>
 
-    {{ (cookies.selection$ | async) || "no consent yet" | json }}
+    {{ (cookies.selection$ | async) || 'no consent yet' | json }}
 
-    </pre>
+    </pre
+    >
   `,
 })
 export class AppComponent {
-  @HostBinding("class") class = "block p-8 space-y-6";
+  @HostBinding('class') class = 'block p-8 space-y-6';
   constructor(public cookies: CookieConsentService) {}
 
   updateOptions() {
     this.cookies.updateOptions({
-      title: "Gimme Cookies...",
+      title: 'Gimme Cookies...',
       cookies: {
         necessary: {
-          title: "Wow",
-          label: "We need this",
+          title: 'Wow',
+          label: 'We need this',
           disabled: true,
           value: true,
         },
@@ -79,7 +80,7 @@ export class AppComponent {
     });
   }
 
-  theme(theme: string = "") {
+  theme(theme: string = '') {
     document.body.className = theme;
   }
 }

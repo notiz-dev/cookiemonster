@@ -1,8 +1,8 @@
-import { ModuleWithProviders, NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { CookieConsentOptions, COOKIECONSENT } from "./cookie-consent.types";
-import { CookieConsentService } from "./cookie-consent.service";
-import { BannerModule } from "./banner/banner.module";
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CookieConsentOptions, COOKIECONSENT } from './cookie-consent.types';
+import { CookieConsentService } from './cookie-consent.service';
+import { BannerModule } from './banner/banner.module';
 
 @NgModule({
   declarations: [],
