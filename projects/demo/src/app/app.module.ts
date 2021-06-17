@@ -1,9 +1,9 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { CookieConsentModule } from "lib";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { CookieConsentModule } from '@garygrossgarten/cookie-monster';
 
-import { AppComponent } from "./app.component";
-import { cookieConfig } from "./cookie.config";
+import { AppComponent } from './app.component';
+import { cookieConfig } from './cookie.config';
 
 @NgModule({
   declarations: [AppComponent],

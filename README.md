@@ -1,27 +1,100 @@
 # CookieConsent
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+A customizable Cookie Consent Banner 🍪 for Angular. Built with Tailwind CSS. GDPR & EU ready! (⚠️ WIP)
 
-## Development server
+Consent is saved to the Browsers LocalStorage.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting started
 
-## Code scaffolding
+1. Install motion package
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm i @garygrossgarten/cookie-monster
+```
 
-## Build
+2. Import `CookieConsentModule` into your component module
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
 
-## Running unit tests
+import { CookieConsentModule } from '@garygrossgarten/cookie-monster';
+import { cookieConfig } from './cookie.config';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, CookieConsentModule.forRoot(cookieConfig)],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
 
-## Running end-to-end tests
+and create your own `CookieConsentOptions` and fill in your text, links and cookie options.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```ts
+// cookie.config.ts
+import { CookieConsentOptions } from '@garygrossgarten/cookie-monster';
 
-## Further help
+export const cookieConfig: CookieConsentOptions = {
+  title: 'We use cookies 🍪',
+  message: `We use cookies to improve your experience and for marketing.`,
+  links: [
+    { label: 'Cookie policy', url: 'http://localhost.4200/cookie-policy' },
+    { label: 'Privacy Policy', url: 'http://localhost.4200/privacy-policy' },
+  ],
+  acceptAllLabel: 'Accept all',
+  acceptSelectionLabel: 'Accept selection',
+  showMoreLabel: 'More options',
+  showLessLabel: 'Show less',
+  cookies: {
+    necessary: {
+      title: 'Necessary Cookies',
+      label: 'These cookies are needed for the site to function correctly.',
+      value: true,
+      disabled: true,
+    },
+    functional: {
+      title: 'Functional cookies',
+      label:
+        'Functional cookies make it possible to save information that changes the way the website appears or acts.',
+    },
+    statistics: {
+      title: 'Statistics',
+      label:
+        'Statistical cookies help the website owner understand how visitors interact with the website by collecting and reporting information.',
+    },
+    marketing: {
+      title: 'Marketing',
+      label:
+        "Marketing / targeting cookies are usually used to show you ads that match your interests. When you visit another website, your browser's cookie is recognized and selected ads are displayed to you based on the information stored in this cookie (Art. 6 para. 1 p. 1 a) DSGVO).",
+    },
+  },
+};
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. Cookie Consent checks the browser LocalStorage, if the consent is not saved it will open up automatically.
+
+4. Use `CookieConsentService` to reopen and delete the consent
+
+```ts
+import { Component } from '@angular/core';
+import { CookieConsentService } from '@garygrossgarten/cookie-monster';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: '...',
+})
+export class AppComponent {
+  constructor(public cookies: CookieConsentService) {}
+
+  showCookieConsent() {
+    this.cookies.showConsent();
+  }
+
+  deleteCookieConsent() {
+    this.cookies.deleteConsent();
+  }
+}
+```
