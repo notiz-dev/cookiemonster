@@ -3,9 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import {
   Cookie,
-  COOKIECONSENT,
   CookieConsentOptions,
   CookieSelection,
+  cookieConsentStorageKey,
 } from '../cookie-consent.types';
 
 @Component({
@@ -147,7 +147,8 @@ export class BannerComponent implements OnInit {
   ngOnInit(): void {
     const cookies = {};
     const state: CookieSelection =
-      JSON.parse(localStorage.getItem(COOKIECONSENT.toString())) || {};
+      JSON.parse(localStorage.getItem(cookieConsentStorageKey(this.options))) ||
+      {};
     Object.keys(this.options.cookies).forEach((c) => {
       const cookie = this.options.cookies[c];
       cookies[c] = new FormControl({

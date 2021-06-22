@@ -16,9 +16,10 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { BannerComponent } from './banner/banner.component';
 import {
-  COOKIECONSENT,
+  COOKIE_CONSENT_OPTIONS,
   CookieConsentOptions,
   CookieSelection,
+  cookieConsentStorageKey,
 } from './cookie-consent.types';
 
 @Injectable({
@@ -29,7 +30,7 @@ export class CookieConsentService implements OnDestroy {
   private ref: ComponentRef<BannerComponent>;
   selection$ = new BehaviorSubject<CookieSelection>(null);
   constructor(
-    @Inject(COOKIECONSENT) private options: CookieConsentOptions,
+    @Inject(COOKIE_CONSENT_OPTIONS) private options: CookieConsentOptions,
     private componentFactoryResolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
     private injector: Injector,
@@ -38,7 +39,9 @@ export class CookieConsentService implements OnDestroy {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
-    const state = JSON.parse(localStorage.getItem(COOKIECONSENT.toString()));
+    const state = JSON.parse(
+      localStorage.getItem(cookieConsentStorageKey(this.options))
+    );
     this.selection$.next(state);
     if (!state) {
       this.showConsent();
@@ -81,8 +84,11 @@ export class CookieConsentService implements OnDestroy {
       .subscribe();
   }
 
-  private saveSelection(selection: CookieSelection | null) {
-    localStorage.setItem(COOKIECONSENT.toString(), JSON.stringify(selection));
+  private saveSelection(selection: CookieSelection | null) {
+    localStorage.setItem(
+      cookieConsentStorageKey(this.options),
+      JSON.stringify(selection)
+    );
     this.selection$.next(selection);
   }
 
