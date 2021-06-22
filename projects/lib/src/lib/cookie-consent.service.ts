@@ -12,7 +12,7 @@ import {
   Injectable,
   Injector,
 } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { BannerComponent } from './banner/banner.component';
 import {
@@ -20,6 +20,7 @@ import {
   CookieConsentOptions,
   CookieSelection,
   cookieConsentStorageKey,
+  CookieSelectionOption,
 } from './cookie-consent.types';
 
 @Injectable({
@@ -28,7 +29,16 @@ import {
 export class CookieConsentService implements OnDestroy {
   private destroy$ = new Subject();
   private ref: ComponentRef<BannerComponent>;
-  selection$ = new BehaviorSubject<CookieSelection>(null);
+  private _cookieSelection$ = new BehaviorSubject<CookieSelection>(null);
+
+  get cookieSelection$(): Observable<CookieSelection> {
+    return this._cookieSelection$.asObservable();
+  }
+
+  get cookieSelectionSnapshot(): CookieSelection {
+    return this._cookieSelection$.getValue();
+  }
+
   constructor(
     @Inject(COOKIE_CONSENT_OPTIONS) private options: CookieConsentOptions,
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -42,18 +52,19 @@ export class CookieConsentService implements OnDestroy {
     const state = JSON.parse(
       localStorage.getItem(cookieConsentStorageKey(this.options))
     );
-    this.selection$.next(state);
+    this._cookieSelection$.next(state);
     if (!state) {
       this.showConsent();
     }
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
     if (this.ref) {
       this.ref.destroy();
     }
-    this.selection$.complete();
+    this._cookieSelection$.complete();
   }
 
   showConsent() {
@@ -89,11 +100,16 @@ export class CookieConsentService implements OnDestroy {
       cookieConsentStorageKey(this.options),
       JSON.stringify(selection)
     );
-    this.selection$.next(selection);
+    this._cookieSelection$.next(selection);
   }
 
-  accepted$(cookie: string) {
-    return this.selection$.pipe(map((s) => !!(s && s[cookie])));
+  accepted$(cookie: CookieSelectionOption): Observable<boolean> {
+    return this._cookieSelection$.pipe(map((s) => !!(s && s[cookie])));
+  }
+
+  acceptedSnapshot(cookie: CookieSelectionOption) {
+    const consent = this._cookieSelection$.getValue();
+    return !!(consent && consent[cookie]);
   }
 
   updateOptions(options: Partial<CookieConsentOptions>) {

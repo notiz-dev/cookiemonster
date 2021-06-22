@@ -9,13 +9,15 @@ export interface CookieConsentOptions {
   showLessLabel: string;
   links: Link[];
   cookieConsentLocalStorageKey?: string | undefined;
-  cookies: {
-    necessary?: Cookie;
-    functional?: Cookie;
-    statistics?: Cookie;
-    marketing?: Cookie;
-    [key: string]: Cookie | undefined;
-  };
+  cookies: Cookies;
+}
+
+export interface Cookies {
+  necessary?: Cookie;
+  functional?: Cookie;
+  statistics?: Cookie;
+  marketing?: Cookie;
+  [key: string]: Cookie | undefined;
 }
 
 export interface Cookie {
@@ -43,6 +45,13 @@ export interface CookieSelection {
   marketing?: boolean;
   [key: string]: boolean | undefined;
 }
+
+export type CookieSelectionOption =
+  | 'necessary'
+  | 'functional'
+  | 'statistics'
+  | 'marketing'
+  | string;
 
 export const cookieConsentStorageKey = (
   options: CookieConsentOptions

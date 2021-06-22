@@ -76,7 +76,7 @@ export const cookieConfig: CookieConsentOptions = {
 
 3. Cookie Consent checks the browser [LocalStorage](#cookie-consent), if the consent is not saved it will open up automatically.
 
-4. Use `CookieConsentService` to reopen and delete the consent
+4. Use `CookieConsentService` to show and delete the consent, access the cookie selection or pick out one cookie:
 
 ```ts
 import { Component } from '@angular/core';
@@ -95,6 +95,22 @@ export class AppComponent {
 
   deleteCookieConsent() {
     this.cookies.deleteConsent();
+  }
+
+  cookieSelection$(): Observable<CookieSelection> {
+    return this.cookies.cookieSelection$();
+  }
+
+  cookieSelectionSnapshot(): CookieSelection {
+    return this.cookies.cookieSelectionSnapshot();
+  }
+
+  acceptedCookie$(): Observable<boolean> {
+    return this.cookies.accepted$('necessary');
+  }
+
+  acceptedCookieSnapshot(): boolean {
+    return this.cookies.acceptedSnapshot('statistics');
   }
 }
 ```
