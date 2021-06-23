@@ -1,7 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CookieConsentOptions, COOKIECONSENT } from './cookie-consent.types';
-import { CookieConsentService } from './cookie-consent.service';
+import {
+  CookieConsentOptions,
+  COOKIE_CONSENT_OPTIONS,
+} from './cookie-consent.types';
 import { BannerModule } from './banner/banner.module';
 
 @NgModule({
@@ -9,7 +11,7 @@ import { BannerModule } from './banner/banner.module';
   imports: [CommonModule, BannerModule],
 })
 export class CookieConsentModule {
-  constructor(private cookieConsent: CookieConsentService) {}
+  constructor() {}
   static forRoot(
     options: CookieConsentOptions
   ): ModuleWithProviders<CookieConsentModule> {
@@ -17,7 +19,7 @@ export class CookieConsentModule {
       ngModule: CookieConsentModule,
       providers: [
         {
-          provide: COOKIECONSENT,
+          provide: COOKIE_CONSENT_OPTIONS,
           useValue: options,
         },
       ],

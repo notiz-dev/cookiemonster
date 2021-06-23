@@ -8,13 +8,16 @@ export interface CookieConsentOptions {
   showMoreLabel: string;
   showLessLabel: string;
   links: Link[];
-  cookies: {
-    necessary?: Cookie;
-    functional?: Cookie;
-    statistics?: Cookie;
-    marketing?: Cookie;
-    [key: string]: Cookie | undefined;
-  };
+  cookieConsentLocalStorageKey?: string | undefined;
+  cookies: Cookies;
+}
+
+export interface Cookies {
+  necessary?: Cookie;
+  functional?: Cookie;
+  statistics?: Cookie;
+  marketing?: Cookie;
+  [key: string]: Cookie | undefined;
 }
 
 export interface Cookie {
@@ -29,8 +32,10 @@ export interface Link {
   url: string;
 }
 
-export const COOKIECONSENT = new InjectionToken<CookieConsentOptions>(
-  'COOKIECONSENT'
+export const COOKIE_CONSENT_STORAGE_KEY = 'COOKIE_CONSENT';
+
+export const COOKIE_CONSENT_OPTIONS = new InjectionToken<CookieConsentOptions>(
+  'COOKIE_CONSENT_OPTIONS'
 );
 
 export interface CookieSelection {
@@ -38,5 +43,16 @@ export interface CookieSelection {
   functional?: boolean;
   statistics?: boolean;
   marketing?: boolean;
-  [key: string]: boolean | undefined;
+  [key: string]: boolean | undefined;
 }
+
+export type CookieSelectionOption =
+  | 'necessary'
+  | 'functional'
+  | 'statistics'
+  | 'marketing'
+  | string;
+
+export const cookieConsentStorageKey = (
+  options: CookieConsentOptions
+): string => options.cookieConsentLocalStorageKey || COOKIE_CONSENT_STORAGE_KEY;

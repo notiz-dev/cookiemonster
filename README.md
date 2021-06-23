@@ -74,9 +74,9 @@ export const cookieConfig: CookieConsentOptions = {
 };
 ```
 
-3. Cookie Consent checks the browser LocalStorage, if the consent is not saved it will open up automatically.
+3. Cookie Consent checks the browser [LocalStorage](#cookie-consent), if the consent is not saved it will open up automatically.
 
-4. Use `CookieConsentService` to reopen and delete the consent
+4. Use `CookieConsentService` to show and delete the consent, access the cookie selection or pick out one cookie:
 
 ```ts
 import { Component } from '@angular/core';
@@ -96,5 +96,50 @@ export class AppComponent {
   deleteCookieConsent() {
     this.cookies.deleteConsent();
   }
+
+  cookieSelection$(): Observable<CookieSelection> {
+    return this.cookies.cookieSelection$();
+  }
+
+  cookieSelectionSnapshot(): CookieSelection {
+    return this.cookies.cookieSelectionSnapshot();
+  }
+
+  acceptedCookie$(): Observable<boolean> {
+    return this.cookies.accepted$('necessary');
+  }
+
+  acceptedCookieSnapshot(): boolean {
+    return this.cookies.acceptedSnapshot('statistics');
+  }
 }
+```
+
+## Cookie Consent
+
+The cookie consent is saved to the browser LocalStorage as JSON Object. Access the cookie consent in the LocalStorage by reading it with the default key `COOKIE_CONSENT`.
+
+```ts
+import { COOKIE_CONSENT_STORAGE_KEY } from @garygrossgarten/cookie-monster;
+
+readCookieConsent() {
+  // default key is COOKIE_CONSENT_STORAGE_KEY = "COOKIE_CONSENT"
+  const cookieConsentJSON = localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY);
+  const cookieConsent = JSON.parse(cookieConsentJSON);
+
+  // access cookieConsent
+}
+```
+
+`CookieConsentOptions` allows you to change the LocalStorage key for the cookie consent by using `cookieConsentLocalStorageKey`:
+
+```ts
+// cookie.config.ts
+import { CookieConsentOptions } from '@garygrossgarten/cookie-monster';
+
+export const cookieConfig: CookieConsentOptions = {
+  title: 'We use cookies 🍪',
+  cookieConsentLocalStorageKey: 'cookiemonster'
+  ...
+};
 ```

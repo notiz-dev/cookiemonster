@@ -56,7 +56,7 @@ import { CookieConsentService } from '@garygrossgarten/cookie-monster';
 
     <pre>
 
-    {{ (cookies.selection$ | async) || 'no consent yet' | json }}
+    {{ (cookies.cookieSelection$ | async) || 'no consent yet' | json }}
 
     </pre
     >
