@@ -143,3 +143,36 @@ export const cookieConfig: CookieConsentOptions = {
   ...
 };
 ```
+
+## Theme
+
+Change the theme with the CSS variables below.
+
+```css
+cc-banner {
+  --cc-background: theme(colors.gray.100);
+  --cc-background-shade: theme(colors.gray.300);
+  --cc-title-color: theme(colors.gray.900);
+  --cc-color: theme(colors.gray.700);
+  --cc-link-color: theme(colors.gray.600);
+  --cc-primary: theme(colors.indigo.500);
+  --cc-primary-hover: theme(colors.indigo.600);
+  --cc-primary-color: theme(colors.gray.50);
+  --cc-secondary: var(--colors.gray.300);
+  --cc-secondary-hover: theme(colors.gray.200);
+  --cc-secondary-color: theme(colors.gray.800);
+}
+```
+
+If you are using Tailwind in your project include the Cookie Banner in the purge list:
+
+```js
+//tailwind.config.js
+module.exports = {
+  purge: [
+    "./src/**/*.{html,ts}",
+    ...,// other purge locations
+    "./node_modules/@garygrossgarten/cookie-monster/esm2015/**/*.js",
+  ],
+};
+```
