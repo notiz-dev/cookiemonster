@@ -170,9 +170,9 @@ If you are using Tailwind in your project include the Cookie Banner in the purge
 //tailwind.config.js
 module.exports = {
   purge: [
-    "./src/**/*.{html,ts}",
-    ...,// other purge locations
-    "./node_modules/@garygrossgarten/cookie-monster/esm2015/**/*.js",
+    './src/**/*.{html,ts}', // your purge config
+    './node_modules/@garygrossgarten/cookie-monster/esm2015/**/*.js', // 👈 cookie banner component
   ],
+  theme: {},
 };
 ```
