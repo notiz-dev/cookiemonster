@@ -19,7 +19,6 @@ import {
   COOKIE_CONSENT_OPTIONS,
   CookieConsentOptions,
   CookieSelection,
-  cookieConsentStorageKey,
   CookieSelectionOption,
 } from './cookie-consent.types';
 
@@ -50,7 +49,7 @@ export class CookieConsentService implements OnDestroy {
       return;
     }
     const state = JSON.parse(
-      localStorage.getItem(cookieConsentStorageKey(this.options))
+      localStorage.getItem(this.options.cookieConsentLocalStorageKey)
     );
     this._cookieSelection$.next(state);
     if (!state) {
@@ -97,7 +96,7 @@ export class CookieConsentService implements OnDestroy {
 
   private saveSelection(selection: CookieSelection | null) {
     localStorage.setItem(
-      cookieConsentStorageKey(this.options),
+      this.options.cookieConsentLocalStorageKey,
       JSON.stringify(selection)
     );
     this._cookieSelection$.next(selection);

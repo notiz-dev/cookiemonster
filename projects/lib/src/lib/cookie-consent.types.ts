@@ -34,6 +34,9 @@ export interface Link {
 
 export const COOKIE_CONSENT_STORAGE_KEY = 'COOKIE_CONSENT';
 
+export const USER_OPTIONS = new InjectionToken<CookieConsentOptions>(
+  'USER_OPTIONS'
+);
 export const COOKIE_CONSENT_OPTIONS = new InjectionToken<CookieConsentOptions>(
   'COOKIE_CONSENT_OPTIONS'
 );
@@ -53,6 +56,9 @@ export type CookieSelectionOption =
   | 'marketing'
   | string;
 
-export const cookieConsentStorageKey = (
-  options: CookieConsentOptions
-): string => options.cookieConsentLocalStorageKey || COOKIE_CONSENT_STORAGE_KEY;
+export function cookieConsentOptionsFactory(options: CookieConsentOptions) {
+  if (!options.cookieConsentLocalStorageKey) {
+    options.cookieConsentLocalStorageKey = COOKIE_CONSENT_STORAGE_KEY;
+  }
+  return options;
+}
