@@ -1,6 +1,7 @@
 {
   "name": "cookie-consent",
   "version": "0.0.0",
+  "description": "A customizable Cookie Consent Banner 🍪 for Angular.",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
