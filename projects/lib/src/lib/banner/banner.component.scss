@@ -10,7 +10,9 @@
   --cc-secondary: var(--colors.gray.500);
   --cc-secondary-hover: theme(colors.gray.600);
   --cc-secondary-color: theme(colors.gray.50);
+  z-index: 9999;
 }
+
 .cc-banner {
   background-color: var(--cc-background);
 }
