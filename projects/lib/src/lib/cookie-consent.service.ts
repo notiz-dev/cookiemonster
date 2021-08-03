@@ -21,20 +21,21 @@ import {
   CookieSelection,
   CookieSelectionOption,
 } from './cookie-consent.types';
+import { loadCookieSelection } from './utils/localstorage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CookieConsentService implements OnDestroy {
   private destroy$ = new Subject();
-  private ref: ComponentRef<BannerComponent>;
-  private _cookieSelection$ = new BehaviorSubject<CookieSelection>(null);
+  private ref: ComponentRef<BannerComponent> | null = null;
+  private _cookieSelection$ = new BehaviorSubject<CookieSelection | null>(null);
 
-  get cookieSelection$(): Observable<CookieSelection> {
+  get cookieSelection$(): Observable<CookieSelection | null> {
     return this._cookieSelection$.asObservable();
   }
 
-  get cookieSelectionSnapshot(): CookieSelection {
+  get cookieSelectionSnapshot(): CookieSelection | null {
     return this._cookieSelection$.getValue();
   }
 
@@ -48,8 +49,9 @@ export class CookieConsentService implements OnDestroy {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
-    const state = JSON.parse(
-      localStorage.getItem(this.options.cookieConsentLocalStorageKey)
+
+    const state = loadCookieSelection(
+      this.options.cookieConsentLocalStorageKey!
     );
     this._cookieSelection$.next(state);
     if (!state) {
@@ -87,7 +89,7 @@ export class CookieConsentService implements OnDestroy {
     this.ref.instance.select$
       .pipe(
         tap((selection) => this.saveSelection(selection)),
-        tap(() => this.ref.destroy()),
+        tap(() => this.ref?.destroy()),
         tap(() => (this.ref = null)),
         takeUntil(this.destroy$)
       )
@@ -96,7 +98,7 @@ export class CookieConsentService implements OnDestroy {
 
   private saveSelection(selection: CookieSelection | null) {
     localStorage.setItem(
-      this.options.cookieConsentLocalStorageKey,
+      this.options.cookieConsentLocalStorageKey!,
       JSON.stringify(selection)
     );
     this._cookieSelection$.next(selection);

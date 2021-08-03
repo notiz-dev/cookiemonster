@@ -6,6 +6,7 @@ import {
   CookieConsentOptions,
   CookieSelection,
 } from '../cookie-consent.types';
+import { loadCookieSelection } from '../utils/localstorage';
 
 @Component({
   selector: 'cc-banner',
@@ -13,7 +14,7 @@ import {
     class="rounded-md w-full max-w-5xl shadow-lg space-y-3 p-4 cc-banner"
   >
     <div class="flex justify-between items-center">
-      <h3 class="text-lg font-semibold cc-title">{{ options.title }}</h3>
+      <h3 class="text-lg font-semibold cc-title">{{ options?.title }}</h3>
 
       <button
         (click)="acceptAll()"
@@ -22,13 +23,13 @@ import {
         type="button"
         class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none cc-button cc-button-primary"
       >
-        {{ options.acceptAllLabel }}
+        {{ options?.acceptAllLabel }}
       </button>
     </div>
-    <p class="max-w-4xl cc-message">{{ options.message }}</p>
+    <p class="max-w-4xl cc-message">{{ options?.message }}</p>
     <div class="flex flex-wrap sm: space-x-2">
       <a
-        *ngFor="let link of options.links"
+        *ngFor="let link of options?.links"
         class="inline-flex items-center space-x-1 cc-link"
         [href]="link.url"
         target="_blank"
@@ -59,7 +60,7 @@ import {
         'max-h-0': !expanded,
         'max-h-huge': expanded
       }"
-      [formGroup]="formGroup"
+      [formGroup]="formGroup!"
     >
       <div
         class="space-y-4 lg:space-y-0 py-4 lg:grid lg:grid-cols-2 cc-cookie-list"
@@ -109,7 +110,7 @@ import {
             clip-rule="evenodd"
           />
         </svg>
-        <span>{{ options.showLessLabel }}</span>
+        <span>{{ options?.showLessLabel }}</span>
       </button>
     </form>
     <div
@@ -120,14 +121,14 @@ import {
         type="button"
         class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none cc-button cc-button-primary"
       >
-        {{ options.acceptAllLabel }}
+        {{ options?.acceptAllLabel }}
       </button>
       <button
         (click)="secondaryAction()"
         type="button"
         class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border text-sm font-medium rounded-md focus:outline-none cc-button cc-button-secondary"
       >
-        {{ expanded ? options.acceptSelectionLabel : options.showMoreLabel }}
+        {{ expanded ? options?.acceptSelectionLabel : options?.showMoreLabel }}
       </button>
     </div>
   </div>`,
@@ -137,26 +138,25 @@ export class BannerComponent implements OnInit {
   @HostBinding('class') class =
     'fixed max-h-screen overflow-y-auto bottom-0 left-0 right-0 p-1 md:p-4 cc-banner-container';
   select$ = new Subject<CookieSelection>();
-  formGroup: FormGroup;
+  formGroup: FormGroup | null = null;
   expanded = false;
   cookies: (Cookie & { name: string })[] = [];
-  public options: CookieConsentOptions;
+  public options: CookieConsentOptions | null = null;
   constructor() {}
 
   ngOnInit(): void {
-    const cookies = {};
+    const cookies: { [name: string]: FormControl } = {};
     const state: CookieSelection =
-      JSON.parse(
-        localStorage.getItem(this.options.cookieConsentLocalStorageKey)
-      ) || {};
-    Object.keys(this.options.cookies).forEach((c) => {
-      const cookie = this.options.cookies[c];
+      loadCookieSelection(this.options!.cookieConsentLocalStorageKey!) || {};
+    Object.keys(this.options!.cookies).forEach((c) => {
+      const cookie = this.options!.cookies[c]!;
       cookies[c] = new FormControl({
-        value: state[c] || cookie.value || false,
-        disabled: cookie.disabled,
+        value: state[c] || cookie?.value || false,
+        disabled: cookie?.disabled,
       });
       this.cookies.push({ ...cookie, name: c });
     });
+    console.log({ bla: this.cookies, cookies });
     this.formGroup = new FormGroup(cookies);
   }
 
@@ -171,8 +171,8 @@ export class BannerComponent implements OnInit {
   secondaryAction() {
     if (this.expanded) {
       const result: CookieSelection = {};
-      Object.keys(this.formGroup.controls).forEach(
-        (c) => (result[c] = this.formGroup.get(c).value)
+      Object.keys(this.formGroup!.controls).forEach(
+        (c) => (result[c] = this.formGroup!.get(c)!.value)
       );
       this.select$.next(result);
     } else {
