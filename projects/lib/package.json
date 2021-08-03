@@ -1,7 +1,7 @@
 {
   "name": "@garygrossgarten/cookie-monster",
   "description": "A customizable Cookie Consent Banner 🍪 for Angular.",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "peerDependencies": {
     "@angular/common": "^11.2.8 || ^12.0.0",
     "@angular/core": "^11.2.8 || ^12.0.0"
