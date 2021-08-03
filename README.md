@@ -176,3 +176,11 @@ module.exports = {
   theme: {},
 };
 ```
+
+## Development
+
+Start the demo project
+
+```bash
+ng s demo
+```
