@@ -1,3 +1,4 @@
+import { CookieConsentService } from './cookie-consent.service';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -13,7 +14,7 @@ import { BannerModule } from './banner/banner.module';
   imports: [CommonModule, BannerModule],
 })
 export class CookieConsentModule {
-  constructor() {}
+  constructor(private cookieConsent: CookieConsentService) {}
   static forRoot(
     options: CookieConsentOptions
   ): ModuleWithProviders<CookieConsentModule> {
