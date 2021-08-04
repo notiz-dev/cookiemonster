@@ -156,7 +156,6 @@ export class BannerComponent implements OnInit {
       });
       this.cookies.push({ ...cookie, name: c });
     });
-    console.log({ bla: this.cookies, cookies });
     this.formGroup = new FormGroup(cookies);
   }
 
