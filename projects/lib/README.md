@@ -13,7 +13,7 @@ Run `ng build lib` to build the project. The build artifacts will be stored in t
 
 ## Publishing
 
-After building your library with `ng build lib`, go to the dist folder `cd dist/lib` and run `npm publish`.
+After building your library with `npm run build:lib`, go to the dist folder `cd dist/cookie-monster` and run `npm publish`.
 
 ## Running unit tests
 
