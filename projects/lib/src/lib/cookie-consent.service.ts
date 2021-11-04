@@ -27,7 +27,7 @@ import { loadCookieSelection } from './utils/localstorage';
   providedIn: 'root',
 })
 export class CookieConsentService implements OnDestroy {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
   private ref: ComponentRef<BannerComponent> | null = null;
   private _cookieSelection$ = new BehaviorSubject<CookieSelection | null>(null);
 
