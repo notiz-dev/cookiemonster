@@ -120,7 +120,7 @@ export class AppComponent {
 The cookie consent is saved to the browser LocalStorage as JSON Object. Access the cookie consent in the LocalStorage by reading it with the default key `COOKIE_CONSENT`.
 
 ```ts
-import { COOKIE_CONSENT_STORAGE_KEY } from @garygrossgarten/cookie-monster;
+import { COOKIE_CONSENT_STORAGE_KEY } from '@garygrossgarten/cookie-monster';
 
 readCookieConsent() {
   // default key is COOKIE_CONSENT_STORAGE_KEY = "COOKIE_CONSENT"
