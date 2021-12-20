@@ -9,7 +9,7 @@ Consent is saved to the Browsers LocalStorage.
 1. Install motion package
 
 ```bash
-npm i @garygrossgarten/cookie-monster
+npm i @notiz/cookie-monster
 ```
 
 2. Import `CookieConsentModule` into your component module
@@ -19,7 +19,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
-import { CookieConsentModule } from '@garygrossgarten/cookie-monster';
+import { CookieConsentModule } from '@notiz/cookie-monster';
 import { cookieConfig } from './cookie.config';
 
 @NgModule({

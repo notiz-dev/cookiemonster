@@ -58,7 +58,7 @@ import { loadCookieSelection } from '../utils/localstorage';
       class="block transition-all duration-400 ease overflow-hidden cc-form"
       [ngClass]="{
         'max-h-0': !expanded,
-        'max-h-huge': expanded
+        'max-h-[9999px]': expanded
       }"
       [formGroup]="formGroup!"
     >
