@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "cross-env NODE_ENV=production ng build --configuration production",
-    "build:lib": "ng build lib --configuration production && cp tailwind.config.js dist/cookie-monster && cp README.md dist/cookie-monster",
+    "build:lib": "ng build lib --configuration production && cp README.md dist/cookie-monster",
     "publish:lib": "npm publish dist/cookie-monster",
     "deploy": "cross-env NODE_ENV=production ng deploy demo --base-href=/cookiemonster/",
     "format": "prettier --write \"src/**/*.{ts,html}\" \"projects/**/*.ts\""
