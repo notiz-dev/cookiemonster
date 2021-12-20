@@ -1,5 +1,5 @@
 module.exports = {
-  purge: [
+  content: [
     './src/**/*.{html,ts}',
     './projects/demo/**/*.{html,ts}',
     './projects/lib/src/**/*.{html,ts}',
