@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import { CookieConsentService } from '@garygrossgarten/cookie-monster';
+import { CookieConsentService } from '@notiz/cookie-monster';
 
 @Component({
   selector: 'app-root',

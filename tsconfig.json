@@ -18,7 +18,7 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@garygrossgarten/cookie-monster": ["./projects/lib/src/public-api"]
+      "@notiz/cookie-monster": ["./projects/lib/src/public-api"]
     }
   },
   "angularCompilerOptions": {

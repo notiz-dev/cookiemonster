@@ -35,7 +35,7 @@ and create your own `CookieConsentOptions` and fill in your text, links and cook
 
 ```ts
 // cookie.config.ts
-import { CookieConsentOptions } from '@garygrossgarten/cookie-monster';
+import { CookieConsentOptions } from '@notiz/cookie-monster';
 
 export const cookieConfig: CookieConsentOptions = {
   title: 'We use cookies 🍪',
@@ -80,7 +80,7 @@ export const cookieConfig: CookieConsentOptions = {
 
 ```ts
 import { Component } from '@angular/core';
-import { CookieConsentService } from '@garygrossgarten/cookie-monster';
+import { CookieConsentService } from '@notiz/cookie-monster';
 
 @Component({
   selector: 'app-root',
@@ -120,7 +120,7 @@ export class AppComponent {
 The cookie consent is saved to the browser LocalStorage as JSON Object. Access the cookie consent in the LocalStorage by reading it with the default key `COOKIE_CONSENT`.
 
 ```ts
-import { COOKIE_CONSENT_STORAGE_KEY } from '@garygrossgarten/cookie-monster';
+import { COOKIE_CONSENT_STORAGE_KEY } from '@notiz/cookie-monster';
 
 readCookieConsent() {
   // default key is COOKIE_CONSENT_STORAGE_KEY = "COOKIE_CONSENT"
@@ -135,7 +135,7 @@ readCookieConsent() {
 
 ```ts
 // cookie.config.ts
-import { CookieConsentOptions } from '@garygrossgarten/cookie-monster';
+import { CookieConsentOptions } from '@notiz/cookie-monster';
 
 export const cookieConfig: CookieConsentOptions = {
   title: 'We use cookies 🍪',
@@ -164,14 +164,14 @@ cc-banner {
 }
 ```
 
-If you are using Tailwind in your project include the Cookie Banner in the purge list:
+If you are using Tailwind in your project include the Cookie Banner in the content list:
 
 ```js
 //tailwind.config.js
 module.exports = {
-  purge: [
+  content: [
     './src/**/*.{html,ts}', // your purge config
-    './node_modules/@garygrossgarten/cookie-monster/esm2015/**/*.js', // 👈 cookie banner component
+    './node_modules/@notiz/cookie-monster/esm2015/**/*.js', // 👈 cookie banner component
   ],
   theme: {},
 };
@@ -179,7 +179,7 @@ module.exports = {
 
 ## Development
 
-Start the demo project
+Start the demo oject
 
 ```bash
 ng s demo

@@ -1,4 +1,4 @@
-import { CookieConsentOptions } from '@garygrossgarten/cookie-monster';
+import { CookieConsentOptions } from '@notiz/cookie-monster';
 
 export const cookieConfig: CookieConsentOptions = {
   title: 'Wir verwenden Cookies 🍪',
