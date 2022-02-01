@@ -1,6 +1,9 @@
 # CookieConsent
 
-A customizable Cookie Consent Banner 🍪 for Angular. Built with Tailwind CSS. GDPR & EU ready! (⚠️ WIP)
+[![npm version](https://badge.fury.io/js/@notiz%2Fcookie-monster.svg)](https://www.npmjs.com/package/@notiz/cookie-monster)
+[![Build Cookiemonster Package](https://github.com/notiz-dev/cookiemonster/actions/workflows/build-lib.yml/badge.svg)](https://github.com/notiz-dev/cookiemonster/actions/workflows/build-lib.yml)
+
+A customizable Cookie Consent Banner 🍪 for Angular. Built with Tailwind CSS. GDPR & EU ready!
 
 Consent is saved to the Browsers LocalStorage.
 
