@@ -174,7 +174,7 @@ If you are using Tailwind in your project include the Cookie Banner in the conte
 module.exports = {
   content: [
     './src/**/*.{html,ts}', // your purge config
-    './node_modules/@notiz/cookie-monster/esm2015/**/*.js', // 👈 cookie banner component
+    './node_modules/@notiz/cookie-monster/esm2020/**/*.mjs', // 👈 cookie banner component
   ],
   theme: {},
 };
