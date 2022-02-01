@@ -1,16 +1,14 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
-  ComponentRef,
-  EmbeddedViewRef,
-  OnDestroy,
-  PLATFORM_ID,
-} from '@angular/core';
-import {
   ApplicationRef,
   ComponentFactoryResolver,
   Inject,
   Injectable,
   Injector,
+  ComponentRef,
+  EmbeddedViewRef,
+  OnDestroy,
+  PLATFORM_ID,
 } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
@@ -39,6 +37,7 @@ export class CookieConsentService implements OnDestroy {
     return this._cookieSelection$.getValue();
   }
 
+  // TODO refactor ComponentFactoryResolver, ViewContainerRef doesn't work in service
   constructor(
     @Inject(COOKIE_CONSENT_OPTIONS) private options: CookieConsentOptions,
     private componentFactoryResolver: ComponentFactoryResolver,
