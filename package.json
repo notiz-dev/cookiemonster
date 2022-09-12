@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:lib": "ng build lib --configuration production && cp README.md dist/cookie-monster",
-    "publish:lib": "npm publish dist/cookie-monster",
+    "publish:lib": "cd dist/cookie-monster && npm publish",
     "deploy": "ng deploy demo --base-href=/cookiemonster/",
     "format": "prettier --write \"src/**/*.{ts,html}\" \"projects/**/*.ts\""
   },
