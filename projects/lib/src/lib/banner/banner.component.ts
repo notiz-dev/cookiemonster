@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import {
   Cookie,
@@ -138,25 +138,25 @@ export class BannerComponent implements OnInit {
   @HostBinding('class') class =
     'fixed max-h-screen overflow-y-auto bottom-0 left-0 right-0 p-1 md:p-4 cc-banner-container';
   select$ = new Subject<CookieSelection>();
-  formGroup: FormGroup | null = null;
+  formGroup: UntypedFormGroup | null = null;
   expanded = false;
   cookies: (Cookie & { name: string })[] = [];
   public options: CookieConsentOptions | null = null;
   constructor() {}
 
   ngOnInit(): void {
-    const cookies: { [name: string]: FormControl } = {};
+    const cookies: { [name: string]: UntypedFormControl } = {};
     const state: CookieSelection =
       loadCookieSelection(this.options!.cookieConsentLocalStorageKey!) || {};
     Object.keys(this.options!.cookies).forEach((c) => {
       const cookie = this.options!.cookies[c]!;
-      cookies[c] = new FormControl({
+      cookies[c] = new UntypedFormControl({
         value: state[c] || cookie?.value || false,
         disabled: cookie?.disabled,
       });
       this.cookies.push({ ...cookie, name: c });
     });
-    this.formGroup = new FormGroup(cookies);
+    this.formGroup = new UntypedFormGroup(cookies);
   }
 
   acceptAll() {
