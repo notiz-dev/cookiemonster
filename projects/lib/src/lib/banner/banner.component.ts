@@ -11,26 +11,26 @@ import { loadCookieSelection } from '../utils/localstorage';
 @Component({
   selector: 'cc-banner',
   template: ` <div
-    class="rounded-md w-full max-w-5xl shadow-lg space-y-3 p-4 cc-banner"
+    class="cc-banner w-full max-w-5xl space-y-3 rounded-md p-4 shadow-lg"
   >
-    <div class="flex justify-between items-center">
-      <h3 class="text-lg font-semibold cc-title">{{ options?.title }}</h3>
+    <div class="flex items-center justify-between">
+      <h3 class="cc-title text-lg font-semibold">{{ options?.title }}</h3>
 
       <button
         (click)="acceptAll()"
         [disabled]="!expanded"
         [ngClass]="{ 'opacity-0': !expanded }"
         type="button"
-        class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none cc-button cc-button-primary"
+        class="cc-button cc-button-primary hidden items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm focus:outline-none md:inline-flex"
       >
         {{ options?.acceptAllLabel }}
       </button>
     </div>
-    <p class="max-w-4xl cc-message">{{ options?.message }}</p>
-    <div class="flex flex-wrap sm: space-x-2">
+    <p class="cc-message max-w-4xl">{{ options?.message }}</p>
+    <div class="sm: flex flex-wrap space-x-2">
       <a
         *ngFor="let link of options?.links"
-        class="inline-flex items-center space-x-1 cc-link"
+        class="cc-link inline-flex items-center space-x-1"
         [href]="link.url"
         target="_blank"
         rel="noopener"
@@ -55,7 +55,7 @@ import { loadCookieSelection } from '../utils/localstorage';
 
     <form
       [attr.hidden]="!expanded"
-      class="block transition-all duration-400 ease overflow-hidden cc-form"
+      class="duration-400 ease cc-form block overflow-hidden transition-all"
       [ngClass]="{
         'max-h-0': !expanded,
         'max-h-[9999px]': expanded
@@ -63,7 +63,7 @@ import { loadCookieSelection } from '../utils/localstorage';
       [formGroup]="formGroup!"
     >
       <div
-        class="space-y-4 lg:space-y-0 py-4 lg:grid lg:grid-cols-2 cc-cookie-list"
+        class="cc-cookie-list space-y-4 py-4 lg:grid lg:grid-cols-2 lg:space-y-0"
       >
         <button
           type="button"
@@ -74,7 +74,7 @@ import { loadCookieSelection } from '../utils/localstorage';
             'cursor-not-allowed': cookie.disabled
           }"
           *ngFor="let cookie of cookies"
-          class="flex items-start space-x-4 max-w-2xl cursor-pointer px-2 py-1 rounded-md cc-cookie-item focus:outline-none"
+          class="cc-cookie-item flex max-w-2xl cursor-pointer items-start space-x-4 rounded-md px-2 py-1 focus:outline-none"
         >
           <cc-toggle
             #toggle
@@ -82,20 +82,20 @@ import { loadCookieSelection } from '../utils/localstorage';
             [formControlName]="cookie.name"
           ></cc-toggle>
           <div
-            class="flex-grow flex flex-col text-left "
+            class="flex flex-grow flex-col text-left "
             id="availability-label"
           >
-            <span class="text-sm font-medium cc-cookie-item-title">{{
+            <span class="cc-cookie-item-title text-sm font-medium">{{
               cookie.title
             }}</span>
-            <span class="text-sm cc-cookie-item-label">{{ cookie.label }}</span>
+            <span class="cc-cookie-item-label text-sm">{{ cookie.label }}</span>
           </div>
         </button>
       </div>
       <button
         type="button"
         (click)="expanded = false"
-        class="flex items-center space-x-4 cc-show-less focus:outline-none hover:opacity-80"
+        class="cc-show-less flex items-center space-x-4 hover:opacity-80 focus:outline-none"
       >
         <svg
           class="-mr-1 ml-2 h-5 w-5"
@@ -114,19 +114,19 @@ import { loadCookieSelection } from '../utils/localstorage';
       </button>
     </form>
     <div
-      class="sticky bottom-0 border-t py-2 flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-3 cc-button-container"
+      class="cc-button-container sticky bottom-0 flex flex-col space-y-3 border-t py-2 md:flex-row md:space-y-0 md:space-x-3"
     >
       <button
         (click)="acceptAll()"
         type="button"
-        class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none cc-button cc-button-primary"
+        class="cc-button cc-button-primary inline-flex items-center justify-center rounded-md border border-transparent py-3 text-sm font-medium shadow-sm focus:outline-none md:px-4 md:py-2"
       >
         {{ options?.acceptAllLabel }}
       </button>
       <button
         (click)="secondaryAction()"
         type="button"
-        class="inline-flex justify-center items-center md:px-4 py-3 md:py-2 border text-sm font-medium rounded-md focus:outline-none cc-button cc-button-secondary"
+        class="cc-button cc-button-secondary inline-flex items-center justify-center rounded-md border py-3 text-sm font-medium focus:outline-none md:px-4 md:py-2"
       >
         {{ expanded ? options?.acceptSelectionLabel : options?.showMoreLabel }}
       </button>

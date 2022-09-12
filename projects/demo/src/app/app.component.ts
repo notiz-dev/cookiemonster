@@ -6,7 +6,7 @@ import { CookieConsentService } from '@notiz/cookie-monster';
   template: `
     <button
       type="button"
-      class="inline-flex capitalize items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium capitalize text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       (click)="cookies.showConsent()"
     >
       reopen cookie consent
@@ -14,39 +14,39 @@ import { CookieConsentService } from '@notiz/cookie-monster';
 
     <button
       type="button"
-      class="ml-4 inline-flex capitalize items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      class="ml-4 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium capitalize text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       (click)="cookies.deleteConsent()"
     >
       delete consent
     </button>
-    <div class="flex flex-row space-x-3 items-center">
+    <div class="flex flex-row items-center space-x-3">
       <button
         (click)="theme()"
-        class="inline-flex h-6 w-10 rounded-full overflow-hidden focus:outline-none"
+        class="inline-flex h-6 w-10 overflow-hidden rounded-full focus:outline-none"
       >
-        <span class="bg-gray-800 flex-grow h-full"></span>
-        <span class="bg-green-500 flex-grow h-full"></span>
+        <span class="h-full flex-grow bg-gray-800"></span>
+        <span class="h-full flex-grow bg-green-500"></span>
       </button>
       <button
         (click)="theme('indigo-light')"
-        class="inline-flex h-6 w-10 rounded-full overflow-hidden focus:outline-none"
+        class="inline-flex h-6 w-10 overflow-hidden rounded-full focus:outline-none"
       >
-        <span class="bg-gray-100 flex-grow h-full"></span>
-        <span class="bg-indigo-500 flex-grow h-full"></span>
+        <span class="h-full flex-grow bg-gray-100"></span>
+        <span class="h-full flex-grow bg-indigo-500"></span>
       </button>
       <button
         (click)="theme('orange-dark')"
-        class="inline-flex h-6 w-10 rounded-full overflow-hidden focus:outline-none"
+        class="inline-flex h-6 w-10 overflow-hidden rounded-full focus:outline-none"
       >
-        <span class="bg-gray-800 flex-grow h-full"></span>
-        <span class="bg-yellow-600 flex-grow h-full"></span>
+        <span class="h-full flex-grow bg-gray-800"></span>
+        <span class="h-full flex-grow bg-yellow-600"></span>
       </button>
       <button
         (click)="theme('blue')"
-        class="inline-flex h-6 w-10 rounded-full overflow-hidden focus:outline-none"
+        class="inline-flex h-6 w-10 overflow-hidden rounded-full focus:outline-none"
       >
-        <span class="bg-blue-200 flex-grow h-full"></span>
-        <span class="bg-blue-800 flex-grow h-full"></span>
+        <span class="h-full flex-grow bg-blue-200"></span>
+        <span class="h-full flex-grow bg-blue-800"></span>
       </button>
     </div>
     <ul>

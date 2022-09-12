@@ -14,12 +14,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       }"
       (click)="value = !value; $event.stopPropagation()"
       type="button"
-      class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 rounded-full cursor-pointer transition-colors ease-in-out duration-100 focus:outline-none cc-cookie-item-toggle"
+      class="cc-cookie-item-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 transition-colors duration-100 ease-in-out focus:outline-none"
       aria-pressed="false"
     >
       <span
         [ngClass]="{ 'translate-x-5': value, 'translate-x-0': !value }"
-        class="pointer-events-none relative inline-block h-5 w-5 rounded-full shadow transform ring-0 transition ease-in-out duration-200 cc-toggle-nipple"
+        class="cc-toggle-nipple pointer-events-none relative inline-block h-5 w-5 transform rounded-full shadow ring-0 transition duration-200 ease-in-out"
       >
         <span
           [ngClass]="{
@@ -30,11 +30,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
             'ease-in': !value,
             'duration-200': !value
           }"
-          class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+          class="absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
           aria-hidden="true"
         >
           <svg
-            class="h-3 w-3 cc-nipple-icon-false"
+            class="cc-nipple-icon-false h-3 w-3"
             fill="none"
             viewBox="0 0 12 12"
           >
@@ -56,11 +56,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
             'ease-in': value,
             'duration-200': value
           }"
-          class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+          class="absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
           aria-hidden="true"
         >
           <svg
-            class="h-3 w-3 cc-nipple-icon-true"
+            class="cc-nipple-icon-true h-3 w-3"
             fill="currentColor"
             viewBox="0 0 12 12"
           >
